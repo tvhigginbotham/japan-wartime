@@ -21,6 +21,7 @@
 
       #iiif-map {
         position: absolute;
+        background-color: rgb(255, 254, 254);
         width: 65%;
         top: 0;
         bottom: 0;
@@ -28,9 +29,13 @@
 
       #about {
         position: absolute;
-        width: calc(35% - 10px);
+        background-color: rgb(255, 255, 255);
+        width: calc(35% - 13px);
+        border-left: 3px groove white;
         padding: 10px;
         right: 0;
+        top: 0;
+        bottom: 0;
       }
 
       .h2 {
@@ -39,11 +44,11 @@
         padding: 5px;
       }
 
-      .p {
+      /* .p {
         color: black;
         font-size: 14px;
         padding: 5px;
-      }
+      } */
 
       #current-view {
         position: absolute;
@@ -84,10 +89,10 @@
             <button id="btn-back">Back</button>
             <button id="btn-forward">Forward</button>
           </div>
-          <p class="p">
-            lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem
-            ipsum lorem ipsum lorem ipsum
-          </p>
+          <div id="place-info">
+            Intro text can be written here and then replaced when clicking on
+            markers or navigating with back, forward UI.
+          </div>
         </section>
       </aside>
     </section>
@@ -123,50 +128,106 @@
       const backButton = $("#btn-back");
       const forwardButton = $("#btn-forward");
 
-      //     // here we'll create markers for key places in the story
-      // const lex = L.marker([-280, 511]).addTo(map);
-      // const frog = L.marker([-280, 258]).addTo(map);
-      // const halleysComet = L.marker([-156, 638]).addTo(map);
+      // here we'll create markers for key places in the story
+      const title = L.marker([-569, 335.1]).addTo(map);
+      const legend = L.marker([-565, 164.1]).addTo(map);
+      const target = L.marker([-118, 114.1]).addTo(map);
+      const territory = L.marker([-238, 292]);
+      const manchuria = L.marker([-77.3, 183.65]).addTo(map);
+      const dutchHarbor = L.marker([-193.25, 426.4]).addTo(map);
+      const tokyo = L.marker([-299.99, 378.2]).addTo(map);
+      const tokyoDistance = L.marker([-473, 237.4]).addTo(map);
+      const bombers = L.marker([-181.5, 326.6]).addTo(map);
+      const hiroshima = L.marker([-329.86, 261.65]).addTo(map);
 
       // construct text string to be inserted into DOM
-      //   const lexHtml = `<h3>Lexington is cool</h3><p>Lorem Ipsum is simply dummy ${twainImg} text of the  industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      const titleHtml = `<h3>Lexington is cool</h3><p>Lorem Ipsum is simply dummy text of the  industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 
-      //     <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`
+          <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`;
 
-      // const frogHtml = `<h3>Frogs are cool</h3>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.`
+      const legendHtml = `<h3>Frogs are cool</h3>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.`;
 
-      // const cometHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const targetHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      // // function to be called when both clicking on marker and
-      //     // when using UI buttons to move fowward and back
-      //     function triggerLex() {
-      //       // replace exisiting HTML content in the side panel
-      //       placeInfo.html(lexHtml);
-      //       // fly the map to that location
-      //       map.flyTo(lex.getLatLng(), 3);
-      //     }
+      const territoryHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      //     function triggerFrog() {
-      //       placeInfo.html(frogHtml);
-      //       map.flyTo(frog.getLatLng(), 3);
-      //     }
+      const manchuriaHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      //     function triggerComet() {
-      //       placeInfo.html(cometHtml);
-      //       map.flyTo(halleysComet.getLatLng(), 3);
-      //     }
+      const dutchHarborHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      //     // on marker click, trigger Lex event
-      //     lex.on('click', () => {
-      //       triggerLex();
-      //     });
+      const tokyoHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      //     frog.on('click', () => {
-      //       triggerFrog();
-      //     });
+      const tokyoDistanceHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
-      //     // use a list to dictate order of story
-      //     const story = ['lex', 'frog', 'comet'];
+      const bombersHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+
+      const hiroshimaHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+
+      // function to be called when both clicking on marker and
+          // when using UI buttons to move fowward and back
+          function triggerTitle() {
+            // replace exisiting HTML content in the side panel
+            placeInfo.html(titleHtml);
+            // fly the map to that location
+            map.flyTo(title.getLatLng(), 3);
+          }
+
+          function triggerLegend() {
+            placeInfo.html(legendHtml);
+            map.flyTo(legend.getLatLng(), 3);
+          }
+
+          function triggerTarget() {
+            placeInfo.html(targetHtml);
+            map.flyTo(target.getLatLng(), 3);
+          }
+
+          function triggerTerritory() {
+            placeInfo.html(territoryHtml);
+            map.flyTo(territory.getLatLng(), 3);
+          }
+
+          function triggerManchuria() {
+            placeInfo.html(manchuriaHtml);
+            map.flyTo(manchuria.getLatLng(), 3);
+          }
+
+          function triggerDutchHarbor() {
+            placeInfo.html(dutchHarborHtml);
+            map.flyTo(dutchHarbor.getLatLng(), 3);
+          }
+
+          function triggerTokyo() {
+            placeInfo.html(tokyoHtml);
+            map.flyTo(tokyo.getLatLng(), 3);
+          }
+
+          function triggerTokyoDistance() {
+            placeInfo.html(tokyoDistanceHtml);
+            map.flyTo(tokyoDistance.getLatLng(), 3);
+          }
+
+          function triggerBombers() {
+            placeInfo.html(bombersHtml);
+            map.flyTo(bombers.getLatLng(), 3);
+          }
+
+          function triggerHiroshima() {
+            placeInfo.html(hiroshimaHtml);
+            map.flyTo(hiroshima.getLatLng(), 3);
+          }
+
+          // on marker click, trigger Lex event
+          title.on('click', () => {
+            triggerTitle();
+          });
+
+          legend.on('click', () => {
+            triggerLegend();
+          });
+
+          // // use a list to dictate order of story
+          // const story = ['title', 'legend', 'target',];
 
       let counter = 0;
 
@@ -200,21 +261,26 @@
       //   console.log('after: counter: ', counter, 'object: ', story[counter]);
       // });
 
-      map.on("moveend", () => {
-        // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
-        const currentBounds = map.getBounds().toBBoxString();
-
-        // output current bounds to screen
-        document.getElementById("current-bounds").innerText = currentBounds;
+      // map.on("moveend", () => {
+      //   // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
+      //   const currentBounds = map.getBounds().toBBoxString();
+      // use this to determine mouse position
+      // can then use coords to create markers, etc.
+      map.on("mousemove", (e) => {
+        console.log(e.latlng);
       });
 
-      document.getElementById("btn-forward").addEventListener("click", () => {
-        map.flyToBounds([
-          // title japan the target
-          [-642.22, 199.27],
-          [-454.97, 451.27],
-        ]);
-      });
+      //   // output current bounds to screen
+      //   document.getElementById("current-bounds").innerText = currentBounds;
+      // });
+
+      // document.getElementById("btn-forward").addEventListener("click", () => {
+      //   map.flyToBounds([
+      //     // title japan the target
+      //     [-642.22, 199.27],
+      //     [-454.97, 451.27],
+      //   ]);
+      // });
       //   map.flyToBounds([ // legend
       //     [-612.37, 99.96],
       //     [-518.75, 225.96],

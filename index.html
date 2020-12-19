@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My map</title>
+    <title>Chase's Japan</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -21,16 +21,16 @@
 
       #iiif-map {
         position: absolute;
-        width: 66%;
+        width: 65%;
         top: 0;
         bottom: 0;
       }
 
       #about {
         position: absolute;
-        width: calc(34% - 10px);
+        width: calc(35% - 10px);
         padding: 10px;
-        right: 0
+        right: 0;
       }
 
       .h2 {
@@ -55,23 +55,15 @@
       }
 
       #ui {
-        position: absolute;
-        width: 30%;
-        bottom: 50px;
-        left: 18%;
-        right: 18%;
-        z-index: 1000;
-        background: whitesmoke;
         padding: 8px 12px;
       }
-      #btn-back {
-        float: left;
-        margin-top: 30px
+
+      button {
+        width: 20%;
       }
 
-      #btn-forward {
-        float: right;
-        margin-bottom: 30px
+      #btn-back {
+        margin-right: 12px;
       }
     </style>
   </head>
@@ -84,15 +76,14 @@
           Current bounds:<br />
           <div id="current-bounds"></div>
         </div>
-        <div id="ui">
-          <button id="btn-back">Back</button>
-          <h3 class="h3">ABOUT</h3>
-          <button id="btn-forward">Forward</button>
-        </div>
       </div>
       <aside id="about">
         <section>
           <h2 class="h2">ABOUT THIS MAP</h2>
+          <div id="ui">
+            <button id="btn-back">Back</button>
+            <button id="btn-forward">Forward</button>
+          </div>
           <p class="p">
             lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem
             ipsum lorem ipsum lorem ipsum
@@ -126,10 +117,88 @@
         "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:0r96fn437/info.json"
       ).addTo(map);
 
+      // select the side panel div to insert info into later
+      const placeInfo = $("#place-info");
+
       const backButton = $("#btn-back");
       const forwardButton = $("#btn-forward");
 
+      //     // here we'll create markers for key places in the story
+      // const lex = L.marker([-280, 511]).addTo(map);
+      // const frog = L.marker([-280, 258]).addTo(map);
+      // const halleysComet = L.marker([-156, 638]).addTo(map);
+
+      // construct text string to be inserted into DOM
+      //   const lexHtml = `<h3>Lexington is cool</h3><p>Lorem Ipsum is simply dummy ${twainImg} text of the  industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+      //     <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`
+
+      // const frogHtml = `<h3>Frogs are cool</h3>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.`
+
+      // const cometHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+
+      // // function to be called when both clicking on marker and
+      //     // when using UI buttons to move fowward and back
+      //     function triggerLex() {
+      //       // replace exisiting HTML content in the side panel
+      //       placeInfo.html(lexHtml);
+      //       // fly the map to that location
+      //       map.flyTo(lex.getLatLng(), 3);
+      //     }
+
+      //     function triggerFrog() {
+      //       placeInfo.html(frogHtml);
+      //       map.flyTo(frog.getLatLng(), 3);
+      //     }
+
+      //     function triggerComet() {
+      //       placeInfo.html(cometHtml);
+      //       map.flyTo(halleysComet.getLatLng(), 3);
+      //     }
+
+      //     // on marker click, trigger Lex event
+      //     lex.on('click', () => {
+      //       triggerLex();
+      //     });
+
+      //     frog.on('click', () => {
+      //       triggerFrog();
+      //     });
+
+      //     // use a list to dictate order of story
+      //     const story = ['lex', 'frog', 'comet'];
+
       let counter = 0;
+
+      //    // object mapping the name of the places in the story
+      // // to the function to be triggered
+      // const storyMap = {
+      //   lex: triggerLex,
+      //   frog: triggerFrog,
+      //   comet: triggerComet
+      // }
+
+      //  // forward button increments counter and calls appropriate trigger function
+      //  forwardButton.on('click', () => {
+      //   console.log('before: counter: ', counter, 'object: ', story[counter]);
+      //   if (counter < story.length) {
+      //     storyMap[story[counter]]();
+      //   }
+      //   if (counter < story.length - 1) {
+      //     counter++;
+      //   }
+      //   console.log('after: counter:', counter, 'object: ', story[counter]);
+      // });
+
+      // // backward button decreases value of counter and calls appropriate trigger function
+      // backButton.on('click', () => {
+      //   console.log('before: counter: ', counter, 'object: ', story[counter]);
+      //   if (counter > 0) {
+      //     counter--;
+      //     storyMap[story[counter]]();
+      //   }
+      //   console.log('after: counter: ', counter, 'object: ', story[counter]);
+      // });
 
       map.on("moveend", () => {
         // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view

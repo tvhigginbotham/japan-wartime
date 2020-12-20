@@ -38,6 +38,7 @@
         right: 0;
         top: 0;
         bottom: 0;
+        overflow-y: scroll;
       }
 
       .h1 {
@@ -58,7 +59,7 @@
       .h3 {
         color: rgb(31, 30, 30);
         font-family: 'Montserrat', sans-serif;
-        font-size: 17px;
+        font-size: 16px;
         font-style: lighter;
         margin-left: 18px;
         margin-right: 18px;
@@ -138,6 +139,44 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
+.boxed {
+        position: -webkit-sticky;
+        position: sticky;
+        margin: 0 auto;
+        font-family: "Monstserrat", sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        text-align: Center;
+        background-color: rgba(92, 85, 85, 0.877);
+        color: rgb(255, 255, 253);
+        padding: 6px;
+        box-shadow: 0 0 15px rgba(80, 76, 76, 0.2);
+        border-radius: 5px;
+        width: 70%;
+        bottom: 4px;
+      }
+
+.citation {
+  font-family: "montserrat", sans-serif;
+  font-size: 12px;
+  color:rgb(75, 71, 71)
+}
+
+.link {
+  color:rgba(245, 33, 33, 0.856);
+  text-decoration: none
+}
+
+.img{
+  width: 100%
+}
+
+.caption{
+  font-family: "monstserrat", sans-serif;
+  font-size: 12px;
+  color:rgb(75, 71, 71)
+}
     </style>
   </head>
 
@@ -159,9 +198,19 @@
             <button id="btn-forward">Forward <i class="arrow right"></i></button>
           </div>
           <div id="place-info">
-            <h2 class="h2">About this project</h2>In 1943, World War II's Pacific Theater — the major theater of battle between the Allied forces and the Japanese Empire — had been underway for a year.
+            <h2 class="h2">About this project</h2><p>In 1943, World War II's Pacific Theater — the major theater of battle between the Allied forces and the Japanese Empire — had been underway for a year.</p>
+            <p>The two sides had engaged in several bloody battles by this point, and racist, nationalist policies were adopted by the highest levels of government, including the United States's incarceration of Japanese Americans in concentration camps.</p>
+            <p>To make matters worse, the U.S. had in 1942 begun its Manhattan Project, the research and development venture that produced the world's first nuclear weapons.</p>
+            <p>It was in this context that Ernest Dudley Chase, the prolific illustrator from Massachussetts, created 'Japan, the Target: a Pictorial Jap-map.' The map depicts Japan as a literal target, encircled by an overwhelming number of bomber planes and seemingly doomed to a catastrophic fate.</p>
+            <p>Just two years after the map's creation, the United States deployed atomic bombs on the Japanese cities of Hiroshima and Nagasaki, killing as many as 225,000 civilians. </p>
+            <p class="citation">Map hosted at the Norman B Leventhal Map & Education Center. <a class="link" href="https://collections.leventhalmap.org/search/commonwealth:0r96fn42z/">Read more here.</a></p>
           </div>
         </section>
+        <div class="boxed">
+          Map created by Tim Higginbotham<br />University of Kentucky: New
+          Maps Plus<br />
+          December 20, 2020
+        </div>
       </aside>
     </section>
 
@@ -199,45 +248,63 @@
       // here we'll create markers for key places in the story
       const title = L.marker([-540, 331.3]).addTo(map);
       const legend = L.marker([-565, 164.1]).addTo(map);
-      const target = L.marker([-118, 114.1]).addTo(map);
-      const territory = L.marker([-238, 292]);
-      const manchuria = L.marker([-77.3, 183.65]).addTo(map);
+      const manchuria = L.marker([-108.34, 150.77]).addTo(map);
       const dutchHarbor = L.marker([-193.25, 426.4]).addTo(map);
       const tokyo = L.marker([-299.99, 378.2]).addTo(map);
       const tokyoDistance = L.marker([-473, 237.4]).addTo(map);
       const bombers = L.marker([-181.5, 326.6]).addTo(map);
       const hiroshima = L.marker([-329.86, 261.65]).addTo(map);
+      const full = L.marker([-323, 253.1])
 
       // can use template strings for organizing text content
-      const titleImg = '<img src="./images/twain.jpeg">';
-      const manchuriaImg = '<a href="">printing and typesetting</a>';
-      const dutchHarborImg = '';
-      const tokyoImg = '';
-      const bombersImg = '';
-      const hiroshimaImg = '';
+      const titleImg = '<img class="img" src="graphics/imperialFlag.png"/>';
+      const manchuriaImg = '<img class="img" src="graphics/manchuria.png"/>';
+      const dutchHarborImg = '<img class ="img" src="graphics/dutchHarbor.png"/>';
+      const tokyoImg = '<img class="img" src="graphics/tokyo.png"/>';
+      const bombersImg = '<img class="img" src="graphics/b17.png"/>';
+      const hiroshimaBeforeImg = '<img class="img" src="graphics/hiroshimaBefore.png"/>';
+      const hiroshimaAfterImg = '<img class="img" src="graphics/hiroshimaAfter.png"/>';
+      const hiroshimaPaintingImg = '<img class="img" src="graphics/hiroshimaPainting.png"/>';
+      const peaceImg = '<img class="img" src="graphics/peace.png"/>'
+      const peace2Img = '<img class="img" src="graphics/peace2.png"/>'
+      const peace3Img = '<img class="img" src="graphics/peace3.png"/>'
 
       // construct text string to be inserted into DOM
-      const titleHtml = `<h3>Lexington is cool</h3><p>Lorem Ipsum is simply dummy text of the  industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      const titleHtml = `<h2 class="h2">Target locked</h2><p>Chase uses Japan's widely recognizable rising sun imagery throughout his map — notice it in each corner around the border — and blends it with a target scope, setting military sights directly on Japan.</p>
+      ${titleImg}<figcaption class="caption">The Japanese Imperial Flag. Source: Wikimedia Commons</figcaption><p>In the map title (flourished with a popular slur), Chase illustrates the sun's rays as flames from an exploding bomb.</p>`;
 
-          <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`;
+      const legendHtml = `<h2>Legend</h2>With the map's legend, Chase makes his intent even clearer, denoting naval bases, US aircrafts, and Japanese city populations. This is a wartime map designed foremost to illustrate the United States' military advantage over Japan.`;
 
-      const legendHtml = `<h3>Frogs are cool</h3>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.`;
+      const manchuriaHtml = `<h2>Manchuria</h2><p>Here Chase includes a brief aside on Manchuria, the Northeastern Chinese region then under Imperial Japanese possession, adding a liberatory angle to the US fight against Japan.</p>${manchuriaImg}<figcaption class="caption">Japanese soldiers in Manchuria. Photo by born1945, licensed under CC BY 2.0</figcaption><p>Manchuria and other Japanese wartime territories are colored as yellow, separating them from the rest of Asia and clarifying them as part of the wartime enemy. Included next to Manchuria is a target scope, again colored in a way that brings to mind the rising sun of the Imperial flag.</p>`;
 
-      const targetHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const dutchHarborHtml = `<h2>Within striking distance</h2><p>At various points on the map, Chase notes the distance from allied bases to Japan's population centers, emphasizing the United States's reach, as well as the threat posed to it by Japan.</p>
+      ${dutchHarborImg}<figcaption class="caption">A WWII base in Dutch Harbor. Photo by Umnak, licensed under CC BY-SA 2.0</figcaption>
+      <p> Here he shows the distance between Yokohama and Dutch Harbor, Alaska, the site of a naval base that Japan attacked in 1942.`;
 
-      const territoryHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const tokyoHtml = `<h2>The target's center</h2><p>Tokyo, Japan's most populous city, serves as the center of the map's "target." Chase uses his population markers to show Tokyo's populaton at 8 million. The US bombers approaching it threaten unspeakable damage.</p>
+      ${tokyoImg}<figcaption class="caption">Tokyo in the 1940s. Photo by manhhai, licensed under CC BY-NC 2.0</figcaption>
+      <p>The red icon near Tokyo represents a Japanese naval base. Here you can also see the threatening barbed wire outline of Japan's islands.</p>`;
 
-      const manchuriaHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const tokyoDistanceHtml = `<h2>Distance to Tokyo</h2><p>Circles span the map, all of them measured in relation to Tokyo, again calling to mind a target scope. With these, Chase creates a sense of imminent destruction for the metropolis and its millions of residents.</p>`;
 
-      const dutchHarborHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const bombersHtml = `<h2>The American bombers</h2><p>As much as anything, Chase uses his map to illustrate US air superiority, devoting most of his legend to his country's numerous models of bombers and fighter jets and dotting his map with hundreds of aircrafts, all of them closing in on Japan.</p>
+      ${bombersImg}<figcaption class="caption">The B17 "Flying Fortress". Photo by anyjazz65, licensed under CC BY-NC 2.0</figcaption>
+      <p>Not shown on Chase's map is the B29 "Superfortress," which made its combat debut the year the map was drawn. Two years later, it would be the plane that deployed atomic bombs on the cities of Nagasaki and Hiroshima.</p>`;
 
-      const tokyoHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const hiroshimaHtml = `<h2>The real target</h2><p>While Chase's map centers Tokyo, the threats presented in his map would come devastatingly true for two different cities. Hiroshima (with a sizable civilian population of 300,000) and Nagasaki (200,000) were attacked with atomic bombs just two years after Chase created this map.</p>
+      ${hiroshimaBeforeImg}<figcaption class="caption">A Hiroshima street scene before the bomb. Photo by shankar s, licensed under CC BY 2.0</figcaption>
+        <p>As many as 225,000 civilians were killed in the bombings. Hiroshima's Nakajima district, a bustling commercial center, was wiped from the earth and replaced with ash.</p>
+        ${hiroshimaAfterImg}<figcaption class="caption">Hiroshima's once-bustling Nakajima district. Photo by monkeyc.net, licensed under CC BY-NC-SA 2.0</figcaption>
+        <p>Beyond the hundreds of thousands of lives lost, the bombs inflicted untold suffering and trauma on their survivors.<p>
+        ${hiroshimaPaintingImg}<figcaption class="caption">A painting from a childhood survivor of the bomb. Photo by poplinre, licensed under CC BY-SA 2.0<figcaption>
+        `;
 
-      const tokyoDistanceHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
-
-      const bombersHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
-
-      const hiroshimaHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
+      const fullHtml = `<h2>A threat come true</h2><p>When Ernest Dudley Chase embarked on creating this map, he was reflecting an anti-Japanese sentiment that was popular in the United States. It is, after all, not unusual to portray a wartime enemy in such a light. He certainly had no way of knowing that nuclear weapons would be deployed on Japan in a mere two years.</p>
+      <p>But in fact, the resulting carnage was the inevitable result of such threatening ideas. Chase did after all encircle a metropolitan city of 8 million people with combat bombers, and the US had already deployed more conventional firebombing attacks before 1943.</p>
+      <p>Viewed in a modern context, Chase's map is a harrowing artifact from a time just before nuclear weapons, and an important reminder of where wartime bluster can lead.</p>
+      ${peaceImg}<figcaption class="caption">Hiroshima's Atomic Bomb Dome, the only surviving structure in the vicinity of the bombsite. Photo by author</figcaption></br>
+      ${peace2Img}<figcaption class="caption">The Children's Peace Monument in Hiroshima. Photo by author</figcaption></br>
+      ${peace3Img}<figcaption class="caption">Photo by author</figcaption>`
 
       // function to be called when both clicking on marker and
       // when using UI buttons to move fowward and back
@@ -253,19 +320,9 @@
         map.flyTo(legend.getLatLng(), 3);
       }
 
-      function triggerTarget() {
-        placeInfo.html(targetHtml);
-        map.flyTo(target.getLatLng(), 3);
-      }
-
-      function triggerTerritory() {
-        placeInfo.html(territoryHtml);
-        map.flyTo(territory.getLatLng(), 1);
-      }
-
       function triggerManchuria() {
         placeInfo.html(manchuriaHtml);
-        map.flyTo(manchuria.getLatLng(), 3);
+        map.flyTo(manchuria.getLatLng(), 2);
       }
 
       function triggerDutchHarbor() {
@@ -293,6 +350,11 @@
         map.flyTo(hiroshima.getLatLng(), 4);
       }
 
+      function triggerFull() {
+        placeInfo.html(fullHtml);
+        map.flyTo(full.getLatLng(), 0);
+      }
+
       // on marker click, trigger Lex event
       title.on("click", () => {
         triggerTitle();
@@ -300,14 +362,6 @@
 
       legend.on("click", () => {
         triggerLegend();
-      });
-
-      target.on("click", () => {
-        triggerTarget();
-      });
-
-      territory.on("click", () => {
-        triggerTerritory();
       });
 
       manchuria.on("click", () => {
@@ -338,14 +392,13 @@
       const story = [
         "title",
         "legend",
-        "target",
-        "territory",
         "manchuria",
         "dutchHarbor",
         "tokyo",
         "tokyoDistance",
         "bombers",
         "hiroshima",
+        "full"
       ];
 
       let counter = 0;
@@ -354,14 +407,13 @@
       const storyMap = {
         title: triggerTitle,
         legend: triggerLegend,
-        target: triggerTarget,
-        territory: triggerTerritory,
         manchuria: triggerManchuria,
         dutchHarbor: triggerDutchHarbor,
         tokyo: triggerTokyo,
         tokyoDistance: triggerTokyoDistance,
         bombers: triggerBombers,
         hiroshima: triggerHiroshima,
+        full: triggerFull,
       };
 
       // forward button increments counter and calls appropriate trigger function
@@ -386,9 +438,9 @@
         console.log("after: counter: ", counter, "object: ", story[counter]);
       });
 
-      // map.on("mousemove", (e) => {
-      //   console.log(e.latlng);
-      // });
+      map.on("mousemove", (e) => {
+        console.log(e.latlng);
+      });
     </script>
   </body>
 </html>

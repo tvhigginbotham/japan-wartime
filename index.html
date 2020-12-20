@@ -13,6 +13,8 @@
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin=""
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Mukta:wght@500&display=swap" rel="stylesheet">
     <style>
       body {
         margin: 0;
@@ -21,7 +23,7 @@
 
       #iiif-map {
         position: absolute;
-        background-color: rgb(255, 254, 254);
+        background-color: rgb(31, 30, 30);
         width: 65%;
         top: 0;
         bottom: 0;
@@ -29,26 +31,46 @@
 
       #about {
         position: absolute;
-        background-color: rgb(255, 255, 255);
-        width: calc(35% - 13px);
-        border-left: 3px groove white;
+        background-color: rgb(252, 245, 222);
+        width: calc(35% - 20px);
+        border-left: 5px groove rgb(255, 255, 253);
         padding: 10px;
         right: 0;
         top: 0;
         bottom: 0;
       }
 
+      .h1 {
+        color: rgb(31, 30, 30);
+        font-family: 'Mukta', sans-serif;
+        font-size: 35px;
+        margin-left: 18px;
+        margin-top: 2%;
+        margin-bottom: 0%
+      }
+      
       .h2 {
-        color: black;
-        font-size: 20px;
-        padding: 5px;
+        color: rgb(31, 30, 30);
+        font-family: 'Mukta', sans-serif;
+        font-size: 22px
       }
 
-      /* .p {
-        color: black;
-        font-size: 14px;
-        padding: 5px;
-      } */
+      .h3 {
+        color: rgb(31, 30, 30);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 17px;
+        font-style: lighter;
+        margin-left: 18px;
+        margin-right: 18px;
+        margin-top: 5px
+      }
+
+      #place-info {
+        color: rgb(31, 30, 30);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        margin: 15px;
+      }
 
       #current-view {
         position: absolute;
@@ -61,15 +83,61 @@
 
       #ui {
         padding: 8px 12px;
-      }
-
-      button {
-        width: 20%;
+        border-bottom: 1px solid black;
+        margin-top: 2%
       }
 
       #btn-back {
-        margin-right: 12px;
+        width: 27%;
+        border: none;
+        border-radius: 6px;
+        background-color: rgba(245, 33, 33, 0.856);
+        color: white;
+        font-size: 20px;
+        font-family: 'Mukta', sans-serif;
+        text-align: center;
+        display: inline-block;
+        padding: 5px 20px;
+        margin-left: 3px;
+        margin-right: 10%;
+        margin-bottom: 20px
       }
+      #btn-back:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+
+      #btn-forward {
+        width: 27%;
+        border: none;
+        border-radius: 6px;
+        background-color: rgba(245, 33, 33, 0.856);
+        color: white;
+        font-size: 20px;
+        font-family: 'Mukta', sans-serif;
+        text-align: center;
+        display: inline-block;
+        padding: 5px 20px;
+      }
+      #btn-forward:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+
+      .arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
     </style>
   </head>
 
@@ -77,21 +145,21 @@
     <section>
       <div>
         <div id="iiif-map"></div>
-        <div id="current-view">
+        <!-- <div id="current-view">
           Current bounds:<br />
-          <div id="current-bounds"></div>
+          <div id="current-bounds"></div> -->
         </div>
       </div>
       <aside id="about">
         <section>
-          <h2 class="h2">ABOUT THIS MAP</h2>
+          <h1 class="h1">'Japan, the Target'</h1>
+          <h3 class="h3">Looking closer at Ernest Dudley Chase's 1943 map</h3>
           <div id="ui">
-            <button id="btn-back">Back</button>
-            <button id="btn-forward">Forward</button>
+            <button id="btn-back"><i class="arrow left"></i> Back</button>
+            <button id="btn-forward">Forward <i class="arrow right"></i></button>
           </div>
           <div id="place-info">
-            Intro text can be written here and then replaced when clicking on
-            markers or navigating with back, forward UI.
+            <h2 class="h2">About this project</h2>In 1943, World War II's Pacific Theater — the major theater of battle between the Allied forces and the Japanese Empire — had been underway for a year.
           </div>
         </section>
       </aside>
@@ -129,7 +197,7 @@
       const forwardButton = $("#btn-forward");
 
       // here we'll create markers for key places in the story
-      const title = L.marker([-569, 335.1]).addTo(map);
+      const title = L.marker([-540, 331.3]).addTo(map);
       const legend = L.marker([-565, 164.1]).addTo(map);
       const target = L.marker([-118, 114.1]).addTo(map);
       const territory = L.marker([-238, 292]);
@@ -139,6 +207,14 @@
       const tokyoDistance = L.marker([-473, 237.4]).addTo(map);
       const bombers = L.marker([-181.5, 326.6]).addTo(map);
       const hiroshima = L.marker([-329.86, 261.65]).addTo(map);
+
+      // can use template strings for organizing text content
+      const titleImg = '<img src="./images/twain.jpeg">';
+      const manchuriaImg = '<a href="">printing and typesetting</a>';
+      const dutchHarborImg = '';
+      const tokyoImg = '';
+      const bombersImg = '';
+      const hiroshimaImg = '';
 
       // construct text string to be inserted into DOM
       const titleHtml = `<h3>Lexington is cool</h3><p>Lorem Ipsum is simply dummy text of the  industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -164,159 +240,155 @@
       const hiroshimaHtml = `<h3>Halley's Cometis rad</h3><p>So beautiful ...</p>`;
 
       // function to be called when both clicking on marker and
-          // when using UI buttons to move fowward and back
-          function triggerTitle() {
-            // replace exisiting HTML content in the side panel
-            placeInfo.html(titleHtml);
-            // fly the map to that location
-            map.flyTo(title.getLatLng(), 3);
-          }
+      // when using UI buttons to move fowward and back
+      function triggerTitle() {
+        // replace exisiting HTML content in the side panel
+        placeInfo.html(titleHtml);
+        // fly the map to that location
+        map.flyTo(title.getLatLng(), 2);
+      }
 
-          function triggerLegend() {
-            placeInfo.html(legendHtml);
-            map.flyTo(legend.getLatLng(), 3);
-          }
+      function triggerLegend() {
+        placeInfo.html(legendHtml);
+        map.flyTo(legend.getLatLng(), 3);
+      }
 
-          function triggerTarget() {
-            placeInfo.html(targetHtml);
-            map.flyTo(target.getLatLng(), 3);
-          }
+      function triggerTarget() {
+        placeInfo.html(targetHtml);
+        map.flyTo(target.getLatLng(), 3);
+      }
 
-          function triggerTerritory() {
-            placeInfo.html(territoryHtml);
-            map.flyTo(territory.getLatLng(), 3);
-          }
+      function triggerTerritory() {
+        placeInfo.html(territoryHtml);
+        map.flyTo(territory.getLatLng(), 1);
+      }
 
-          function triggerManchuria() {
-            placeInfo.html(manchuriaHtml);
-            map.flyTo(manchuria.getLatLng(), 3);
-          }
+      function triggerManchuria() {
+        placeInfo.html(manchuriaHtml);
+        map.flyTo(manchuria.getLatLng(), 3);
+      }
 
-          function triggerDutchHarbor() {
-            placeInfo.html(dutchHarborHtml);
-            map.flyTo(dutchHarbor.getLatLng(), 3);
-          }
+      function triggerDutchHarbor() {
+        placeInfo.html(dutchHarborHtml);
+        map.flyTo(dutchHarbor.getLatLng(), 3.6);
+      }
 
-          function triggerTokyo() {
-            placeInfo.html(tokyoHtml);
-            map.flyTo(tokyo.getLatLng(), 3);
-          }
+      function triggerTokyo() {
+        placeInfo.html(tokyoHtml);
+        map.flyTo(tokyo.getLatLng(), 3);
+      }
 
-          function triggerTokyoDistance() {
-            placeInfo.html(tokyoDistanceHtml);
-            map.flyTo(tokyoDistance.getLatLng(), 3);
-          }
+      function triggerTokyoDistance() {
+        placeInfo.html(tokyoDistanceHtml);
+        map.flyTo(tokyoDistance.getLatLng(), 3);
+      }
 
-          function triggerBombers() {
-            placeInfo.html(bombersHtml);
-            map.flyTo(bombers.getLatLng(), 3);
-          }
+      function triggerBombers() {
+        placeInfo.html(bombersHtml);
+        map.flyTo(bombers.getLatLng(), 3.5);
+      }
 
-          function triggerHiroshima() {
-            placeInfo.html(hiroshimaHtml);
-            map.flyTo(hiroshima.getLatLng(), 3);
-          }
+      function triggerHiroshima() {
+        placeInfo.html(hiroshimaHtml);
+        map.flyTo(hiroshima.getLatLng(), 4);
+      }
 
-          // on marker click, trigger Lex event
-          title.on('click', () => {
-            triggerTitle();
-          });
+      // on marker click, trigger Lex event
+      title.on("click", () => {
+        triggerTitle();
+      });
 
-          legend.on('click', () => {
-            triggerLegend();
-          });
+      legend.on("click", () => {
+        triggerLegend();
+      });
 
-          // // use a list to dictate order of story
-          // const story = ['title', 'legend', 'target',];
+      target.on("click", () => {
+        triggerTarget();
+      });
+
+      territory.on("click", () => {
+        triggerTerritory();
+      });
+
+      manchuria.on("click", () => {
+        triggerManchuria();
+      });
+
+      dutchHarbor.on("click", () => {
+        triggerDutchHarbor();
+      });
+
+      tokyo.on("click", () => {
+        triggerTokyo();
+      });
+
+      tokyoDistance.on("click", () => {
+        triggerTokyoDistance();
+      });
+
+      bombers.on("click", () => {
+        triggerBombers();
+      });
+
+      hiroshima.on("click", () => {
+        triggerHiroshima();
+      });
+
+      // use a list to dictate order of story
+      const story = [
+        "title",
+        "legend",
+        "target",
+        "territory",
+        "manchuria",
+        "dutchHarbor",
+        "tokyo",
+        "tokyoDistance",
+        "bombers",
+        "hiroshima",
+      ];
 
       let counter = 0;
 
-      //    // object mapping the name of the places in the story
-      // // to the function to be triggered
-      // const storyMap = {
-      //   lex: triggerLex,
-      //   frog: triggerFrog,
-      //   comet: triggerComet
-      // }
+      // object mapping the name of the places in the story to the function to be triggered
+      const storyMap = {
+        title: triggerTitle,
+        legend: triggerLegend,
+        target: triggerTarget,
+        territory: triggerTerritory,
+        manchuria: triggerManchuria,
+        dutchHarbor: triggerDutchHarbor,
+        tokyo: triggerTokyo,
+        tokyoDistance: triggerTokyoDistance,
+        bombers: triggerBombers,
+        hiroshima: triggerHiroshima,
+      };
 
-      //  // forward button increments counter and calls appropriate trigger function
-      //  forwardButton.on('click', () => {
-      //   console.log('before: counter: ', counter, 'object: ', story[counter]);
-      //   if (counter < story.length) {
-      //     storyMap[story[counter]]();
-      //   }
-      //   if (counter < story.length - 1) {
-      //     counter++;
-      //   }
-      //   console.log('after: counter:', counter, 'object: ', story[counter]);
-      // });
-
-      // // backward button decreases value of counter and calls appropriate trigger function
-      // backButton.on('click', () => {
-      //   console.log('before: counter: ', counter, 'object: ', story[counter]);
-      //   if (counter > 0) {
-      //     counter--;
-      //     storyMap[story[counter]]();
-      //   }
-      //   console.log('after: counter: ', counter, 'object: ', story[counter]);
-      // });
-
-      // map.on("moveend", () => {
-      //   // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
-      //   const currentBounds = map.getBounds().toBBoxString();
-      // use this to determine mouse position
-      // can then use coords to create markers, etc.
-      map.on("mousemove", (e) => {
-        console.log(e.latlng);
+      // forward button increments counter and calls appropriate trigger function
+      forwardButton.on("click", () => {
+        console.log("before: counter: ", counter, "object: ", story[counter]);
+        if (counter < story.length) {
+          storyMap[story[counter]]();
+        }
+        if (counter < story.length - 1) {
+          counter++;
+        }
+        console.log("after: counter:", counter, "object: ", story[counter]);
       });
 
-      //   // output current bounds to screen
-      //   document.getElementById("current-bounds").innerText = currentBounds;
-      // });
+      // backward button decreases value of counter and calls appropriate trigger function
+      backButton.on("click", () => {
+        console.log("before: counter: ", counter, "object: ", story[counter]);
+        if (counter > 0) {
+          counter--;
+          storyMap[story[counter]]();
+        }
+        console.log("after: counter: ", counter, "object: ", story[counter]);
+      });
 
-      // document.getElementById("btn-forward").addEventListener("click", () => {
-      //   map.flyToBounds([
-      //     // title japan the target
-      //     [-642.22, 199.27],
-      //     [-454.97, 451.27],
-      //   ]);
+      // map.on("mousemove", (e) => {
+      //   console.log(e.latlng);
       // });
-      //   map.flyToBounds([ // legend
-      //     [-612.37, 99.96],
-      //     [-518.75, 225.96],
-      //   ]);
-      //   map.flyToBounds([ // top left rising sun as target
-      //     [-162.81, 45.38],
-      //     [-69.18, 171.38],
-      //   ])
-      //   map.flyToBounds([ // japan territory as yellow, other as green
-      //     [-413.785, -59.73],
-      //     [-39.285, 444.27],
-      //   ])
-      //   map.flyToBounds([ // munchuria as object of liberation
-      //     [-127.965, 124.11],
-      //     [-34.34, 250.11],
-      //   ])
-      //   map.flyToBounds([ // distance from dutch harbor and allied bases
-      //     [-248.62, 361.86],
-      //     [-154.96, 487.86],
-      //   ])
-      //   map.flyToBounds([ // tokyo as center of target. 80 represents mupltiples of 100k, noting its 8 million pop. red circles with anchors are naval bases
-      //     [-350.13, 310.12],
-      //     [-256.51, 436.19],
-      //   ])
-      //   map.flyToBounds([ // "tokyo to any point on this circle"
-      //     [-536.37, 166.38],
-      //     [-442.75, 292.38],
-      //   ])
-      //   map.flyToBounds([ // bombers circling tokyo, b26 "consolidated liberator"
-      //     [-449.46, 250.47],
-      //     [-355.84, 376.47],
-      //   ])
-      //   map.flyToBounds([ // hiroshima and nagasaki
-      //     [-394.88, 181.43],
-      //     [-301.26, 307.43],
-      //   ])
     </script>
   </body>
 </html>

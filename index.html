@@ -262,6 +262,7 @@
       const dutchHarborImg = '<img class ="img" src="graphics/dutchHarbor.png"/>';
       const tokyoImg = '<img class="img" src="graphics/tokyo.png"/>';
       const bombersImg = '<img class="img" src="graphics/b17.png"/>';
+      const enolaImg = '<img class="img" src="graphics/enola.png"/>'
       const hiroshimaBeforeImg = '<img class="img" src="graphics/hiroshimaBefore.png"/>';
       const hiroshimaAfterImg = '<img class="img" src="graphics/hiroshimaAfter.png"/>';
       const hiroshimaPaintingImg = '<img class="img" src="graphics/hiroshimaPainting.png"/>';
@@ -275,23 +276,24 @@
 
       const legendHtml = `<h2>Legend</h2>With the map's legend, Chase makes his intent even clearer, denoting naval bases, US aircrafts, and Japanese city populations. This is a wartime map designed foremost to illustrate the United States' military advantage over Japan.<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>`;
 
-      const manchuriaHtml = `<h2>Manchuria</h2><p>Here Chase includes a brief aside on Manchuria, the Northeastern Chinese region then under Imperial Japanese possession, adding a liberatory angle to the US fight against Japan.</p>${manchuriaImg}<figcaption class="caption">Japanese soldiers in Manchuria. Photo by born1945, licensed under CC BY 2.0</figcaption><p>Manchuria and other Japanese wartime territories are colored as yellow, separating them from the rest of Asia and clarifying them as part of the wartime enemy. Included next to Manchuria is a target scope, again colored in a way that brings to mind the rising sun of the Imperial flag.</p>`;
+      const manchuriaHtml = `<h2>Manchuria</h2><p>Here Chase includes a brief aside on Manchuria, the Northeastern Chinese region then under Imperial Japanese possession, adding a liberatory angle to the US fight against Japan.</p>${manchuriaImg}<figcaption class="caption">Japanese soldiers in Manchuria. Photo by born1945, licensed under CC BY 2.0</figcaption><p>Manchuria and other Japanese wartime territories are colored as yellow, separating them from the rest of Asia and clarifying them as part of the wartime enemy. Included next to Manchuria is a compass that, like much of the map, evokes a target scope, again colored in a way that brings to mind the rising sun of the Imperial flag.</p>`;
 
       const dutchHarborHtml = `<h2>Within striking distance</h2><p>At various points on the map, Chase notes the distance from allied bases to Japan's population centers, emphasizing the United States's reach, as well as the threat posed to it by Japan.</p>
       ${dutchHarborImg}<figcaption class="caption">A WWII base in Dutch Harbor. Photo by Umnak, licensed under CC BY-SA 2.0</figcaption>
-      <p> Here he shows the distance between Yokohama and Dutch Harbor, Alaska, the site of a naval base that Japan had attacked in 1942.`;
+      <p> Here he shows the distance between Yokohama and Dutch Harbor, Alaska, the site of a naval base that Japan had attacked in 1942 — the first attack on US land after Pearl Harbor`;
 
       const tokyoHtml = `<h2>The target's center</h2><p>Tokyo, Japan's most populous city, serves as the center of the map's "target." Chase uses his population markers to show Tokyo's populaton at 8 million. The US bombers approaching it threaten unspeakable damage.</p>
       ${tokyoImg}<figcaption class="caption">Tokyo in the 1940s. Photo by manhhai, licensed under CC BY-NC 2.0</figcaption>
       <p>The red icon near Tokyo represents a Japanese naval base. Here you can also see the threatening barbed wire outline of Japan's islands.</p>`;
 
-      const tokyoDistanceHtml = `<h2>Distance to Tokyo</h2><p>Circles span the map, all of them measured in relation to Tokyo, again calling to mind a target scope. With these, Chase creates a sense of imminent destruction for the metropolis and its millions of residents.</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>`;
+      const tokyoDistanceHtml = `<h2>Distance to Tokyo</h2><p>Reticles span the map, all of them measured in relation to Tokyo, again calling to mind a target scope. With these, Chase creates a sense of imminent destruction for the metropolis and its millions of residents.</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>`;
 
       const bombersHtml = `<h2>The American bombers</h2><p>As much as anything, Chase uses his map to illustrate US air superiority, devoting most of his legend to his country's numerous models of bombers and fighter jets and dotting his map with hundreds of aircrafts, all of them closing in on Japan.</p>
       ${bombersImg}<figcaption class="caption">The B17 "Flying Fortress". Photo by anyjazz65, licensed under CC BY-NC 2.0</figcaption>
-      <p>Not shown on Chase's map is the B29 "Superfortress," which made its combat debut the year the map was drawn. Two years later, it would be the plane that deployed atomic bombs on the cities of Nagasaki and Hiroshima.</p>`;
+      <p>Not shown on Chase's map is the B29 "Superfortress," which made its combat debut the year the map was drawn. Two years later, it would become the plane that deployed atomic bombs on the cities of Nagasaki and Hiroshima.</p>
+      ${enolaImg}<figcaption class="caption">"Enola Gay" — the B29 that attacked Hiroshima with an atomic bomb. Photo by twm1340, licensed under CC PDM 1.0`;
 
-      const hiroshimaHtml = `<h2>The real target</h2><p>While Chase's map centers Tokyo, the threats presented in his map would come devastatingly true for two different cities. Hiroshima (with a sizable civilian population of 300,000) and Nagasaki (200,000) were attacked with atomic bombs just two years after Chase created this map.</p>
+      const hiroshimaHtml = `<h2>The real target</h2><p>While Chase's map centers Tokyo, the threats presented in his map would come devastatingly true for two entirely different cities. Hiroshima (with a sizable civilian population of 300,000) and Nagasaki (200,000) were attacked with atomic bombs just two years after Chase created this map.</p>
       ${hiroshimaBeforeImg}<figcaption class="caption">A Hiroshima street scene before the bomb. Photo by shankar s, licensed under CC BY 2.0</figcaption>
         <p>As many as 225,000 civilians were killed in the bombings. Hiroshima's Nakajima district, a bustling commercial center, was wiped from the earth and replaced with ash.</p>
         ${hiroshimaAfterImg}<figcaption class="caption">Hiroshima's once-bustling Nakajima district. Photo by monkeyc.net, licensed under CC BY-NC-SA 2.0</figcaption>
